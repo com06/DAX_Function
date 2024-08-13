@@ -5,32 +5,32 @@
 ### Folder: 01_DAX_DimTime
 
 ```
-DimTime =
-     VAR V_Calendar = CALENDARAUTO()
-RETURN
-    GENERATE (
-        V_Calendar;
-        VAR V_Calendar_date = [Date]
-        VAR LetoDatum = YEAR(V_Calendar_date)
-        VAR Kvartal = CEILING(MONTH(V_Calendar_date)/3;1)
-        VAR MesecCifra = MONTH(V_Calendar_date)
-        VAR DanN = DAY(V_Calendar_date)
-        VAR KonecMeseca = EOMONTH(V_Calendar_date; 0)
-        VAR TedenCifra = WEEKNUM(V_Calendar_date; 2)
-        VAR DanVTednu = WEEKDAY(V_Calendar_date;2)
-        Return ROW(
-            "Day"; V_Calendar_date;
-            "OnlyDay"; DanN;
-            "Year"; LetoDatum;
-            "Month (number)"; MesecCifra;
-            "Quarter"; Kvartal;
-            "Month"; FORMAT(V_Calendar_date; "mmmm");
-            "DayOfWeek"; DanVTednu;
-            "NameOfWeek"; FORMAT(DanVTednu+1; "dddd");
-            "Year Month"; FORMAT (V_Calendar_date; "mmm yy");
-            "End Of Month"; FORMAT (KonecMeseca; "dd mmm yy");
-            "Week Number"; TedenCifra
-        )
+DimDate =
+    var _today = TODAY()
+    var startYear = YEAR ( MIN(orders[date]) )  //ระบุคอลัมน์ของวันที่ขาย
+    var endYear = YEAR( MAX(orders[date]) )
+    // CALENDAR(DATE(2020,01,01), DATE(2025,12,31))
+    RETURN
+    ADDCOLUMNS (
+        CALENDAR(
+            DATE(startYear,1,1),
+            DATE(endYear,12,31)
+        ),
+        "DateID", FORMAT([Date], "YYYYMMDD"),
+        "DateTH", FORMAT([Date], "dd/mm/yyyy", "th-TH"),
+        "Year", YEAR([Date]),
+        "Month", FORMAT([Date], "mmm"),
+        "Month-Full", FORMAT([Date], "mmmm"),
+        "MonthID", MONTH([Date]),
+        "MonthYear", FORMAT([Date], "mmm yyyy"),
+        "MonthYearID", INT(FORMAT([Date], "yyyymm")),
+        "QuarterYearTH", "Q" & FORMAT([Date], "q yyyy", "th-TH"),
+        "QuarterYear", "Q" & FORMAT([Date], "q yyyy"),
+        "QuarterYearID", INT(FORMAT([Date], "yyyyq")),
+        "DayName", FORMAT([Date],"ddd"),
+        "DayName-Full", FORMAT([Date],"dddd"),
+        "DayNum", WEEKDAY([Date])
     )
+    //Powered by Ampon(Tle) Training
 
 ```
