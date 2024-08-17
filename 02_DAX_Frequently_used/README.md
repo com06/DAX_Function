@@ -146,3 +146,4 @@ AVERAGEX(
 [DailySales]
 )
 ```
+https://quickerpthailand.com/blog-power-bi-dax/
