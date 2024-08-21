@@ -34,3 +34,13 @@ DimDate =
     //Powered by Ampon(Tle) Training
 
 ```
+### Folder: 02_Range_Age
+```
+age_category =
+IF([age] <= 20 , "0-20 ปี",
+ IF([age] <= 30 , "21-30 ปี",
+ IF([age] <= 40 , "31-40 ปี",
+ IF([age] <= 50 , "41-50 ปี",
+ IF([age] >= 51 , "51 ปีขึ้นไป")
+))))
+```
