@@ -48,6 +48,13 @@ ProfitMargin = DIVIDE(Sales[Profit], Sales[Revenue])
 ```
 TotalSalesAllRegions = CALCULATE(SUM(Sales[Revenue]), ALL(Sales[Region]))
 ```
+### LEFT
+LEFT เป็นฟังก์ชันที่จะดึงตัวอักษรจากซ้ายมือของข้อความ
+```
+LEFT([mobile], 6) & "xxxx"
+```
+โดยเลข 6 เป็นตัวระบุจำนวนตัวอักษรที่ต้องการดึง (ในที่นี้คือ 6 ตัวแรก)
+& "xxxx" ในที่นี้คือการต่อสตริง "xxxx" เข้าไปหลังจากตัวเลข 6 ตัวแรก
 
 ### การคำนวณ Year-over-Year Growth
 สูตรนี้ช่วยคำนวณเปอร์เซ็นต์การเติบโตในยอดขายระหว่างปีปัจจุบันและปีก่อนหน้า
